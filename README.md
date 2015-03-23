@@ -1,5 +1,5 @@
 # php-autodiscover
-Generate a valid autodiscover.xml for outlook clients
+Generates a valid autodiscover.xml for outlook clients
 
 ### Usage
 Put the *autodiscover*-folder into your webroot. Set up a new subdomain (via Hosting control panel or as a vhost using your own webserver) for `autodiscover.example.com`.  
