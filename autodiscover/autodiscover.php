@@ -12,21 +12,20 @@ preg_match("/\<EMailAddress\>(.*?)\<\/EMailAddress\>/", $data, $email);
 $domain = substr(strrchr($data, "@"), 1);
 
 
-// pop settings
+// POP settings
 $popServer = 'pop' . $domain; // pop.example.com
 $popPort = '110';
 $smtpSSL = 'off';
 
-// imap settings
+// IMAP settings
 $imapServer = 'imap' . $domain; // imap.example.com
 $imapPort = '993';
 $imapSSL = 'on';
 
-// smtp settings
+// SMTP settings
 $smtpServer = 'smtp' . $domain; // smtp.example.com
 $smtpPort = '25';
 $smtpSSL = 'off';
-
 
 
 //set Content-Type
