@@ -7,32 +7,34 @@ This script generates a valid autodiscover.xml file upon request, but inserts se
 When setting up email accounts, it would be nice if the basic stuff would be automatically inserted - the mail servers, their ports, etc. That is exactly what this thing does.  
 Of course you can hack this as much as you want, remove the interactive stuff and use it solely as a working autodiscover template. Either way I'd be happy if you forked the repository so I can merge new branches in.
 
-#### Setup
+## Setup
 Put the *autodiscover*-folder into your webroot. Set up a new subdomain (via Hosting control panel or as a vhost using your own webserver) for `autodiscover.example.com`.  
 
-#### Configuration
+## Configuration
 The least information neeeded to autoconfigure email clients is the mail service domains and ports:
-  Inside of `autodiscover.php` you will find this code:
-  ```php
+Inside of `autodiscover.php` you will find this code:
+
+```php
     // pop settings
-    $popServer = 'pop' . $domain; // pop.example.com
-    $popPort = '110';
-    $smtpSSL = 'off';
+    $popServer = 'pop.' . $domain; // pop.example.com
+    $popPort = 110;
+    $smtpSSL = false;
     
     // imap settings
-    $imapServer = 'imap' . $domain; // imap.example.com
-    $imapPort = '993';
-    $imapSSL = 'on';
+    $imapServer = 'imap.' . $domain; // imap.example.com
+    $imapPort = 993;
+    $imapSSL = true;
     
     // smtp settings
-    $smtpServer = 'smtp' . $domain; // smtp.example.com
-    $smtpPort = '25';
-    $smtpSSL = 'off';
-
+    $smtpServer = 'smtp.' . $domain; // smtp.example.com
+    $smtpPort = 587;
+    $smtpSSL = true;
   ```
+The variable `$domain` is populated with the domain from the request.
 
-#### debugging
-If the client throws an error or is unable to retrieve the config, you can enable a debug log holding each individual http request by uncommenting line 6 in `autodiscover.php`.  
+## Debugging
+If the client throws an error or is unable to retrieve the config, you can enable a debug log holding each individual http request by uncommenting [line 20 in `autodiscover.php`](./autodiscover/autodiscover.php#L20).  
 
-#### problems
-Outlook takes pretty long for servers without a valid SSL certificate.
+## Known problems
+ - Outlook takes pretty long for servers without a valid SSL certificate, so make sure to get one
+ - Apple Mail doesn't implement the autodiscover protocol correctly, if you depend on this client, you might need to fiddle with the response
