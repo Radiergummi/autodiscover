@@ -15,7 +15,7 @@ $domain = substr(strrchr($data, "@"), 1);
 // POP settings
 $popServer = 'pop' . $domain; // pop.example.com
 $popPort = '110';
-$smtpSSL = 'off';
+$popSSL = 'off';
 
 // IMAP settings
 $imapServer = 'imap' . $domain; // imap.example.com
@@ -44,7 +44,7 @@ header("Content-Type: application/xml");
 				<LoginName><?php echo $email[1]; ?></LoginName>
 				<DomainRequired>off</DomainRequired>
 				<SPA>off</SPA>
-				<SSL><?=popSSL?></SSL>
+				<SSL><?=$popSSL?></SSL>
 				<DomainRequired>off</DomainRequired>
 			</Protocol>
 			<Protocol>
@@ -54,7 +54,7 @@ header("Content-Type: application/xml");
 				<DomainRequired>off</DomainRequired>
 				<LoginName><?php echo $email[1]; ?></LoginName>
 				<SPA>off</SPA>
-				<SSL><?=imapSSL?></SSL>
+				<SSL><?=$imapSSL?></SSL>
 				<AuthRequired>on</AuthRequired>
 			</Protocol>
 			<Protocol>
@@ -64,7 +64,7 @@ header("Content-Type: application/xml");
 				<DomainRequired>off</DomainRequired>
 				<LoginName><?php echo $email[1]; ?></LoginName>
 				<SPA>off</SPA>
-				<SSL><?=smtpSSL?></SSL>
+				<SSL><?=$smtpSSL?></SSL>
 				<AuthRequired>on</AuthRequired>
 				<UsePOPAuth>on</UsePOPAuth>
 				<SMTPLast>on</SMTPLast>
