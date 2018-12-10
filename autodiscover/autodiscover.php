@@ -22,6 +22,11 @@ $request = file_get_contents("php://input");
 // retrieve email address from client request
 preg_match( "/\<EMailAddress\>(.*?)\<\/EMailAddress\>/", $request, $email );
 
+// check for invalid mail, to prevent XSS
+if (filter_var($email[1], FILTER_VALIDATE_EMAIL) === false) {
+	throw new Exception('Invalid E-Mail provided');
+}
+
 // get domain from email address
 $domain = substr( strrchr( $request, "@" ), 1 );
 
