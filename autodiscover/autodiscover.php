@@ -28,7 +28,7 @@ if (filter_var($email[1], FILTER_VALIDATE_EMAIL) === false) {
 }
 
 // get domain from email address
-$domain = substr( strrchr( $request, "@" ), 1 );
+$domain = substr( strrchr( $email[1], "@" ), 1 );
 
 /**************************************
  *   Port and server settings below   *
